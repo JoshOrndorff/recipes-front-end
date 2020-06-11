@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Substrate Recipes`,
+    description: `A Hands-On Cookbook for Aspiring Blockchain Chefs`,
+    author: `Joshy Orndorff`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -13,6 +13,24 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `local-markdown`,
+    //     path: `${__dirname}/src/local-markdown`,
+    //   },
+    // },
+    {
+      resolve: `gatsby-source-git`,
+      options: {
+        name: `main-recipes-content`,
+        remote: `https://github.com/substrate-developer-hub/recipes.git`,
+        branch: `alt-front-end`,
+        // Only import the docs folder from a codebase.
+        patterns: [`text/**/*.md`]
+      }
+    },
+    `gatsby-transformer-remark`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
