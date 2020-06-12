@@ -30,7 +30,30 @@ module.exports = {
         patterns: [`text/**/*.md`]
       }
     },
-    `gatsby-transformer-remark`,
+    {
+			resolve: `gatsby-transformer-remark`,
+			options: {
+				plugins: [
+					{
+						resolve: `gatsby-remark-embed-snippet`,
+						options: {}
+					},
+					{
+						resolve: `gatsby-remark-prismjs`,
+						options: {
+							// This tells prismjs about a new language called rs that extends rust.
+							// It is necessary because the embed snippets are labelled after files extensions.
+							languageExtensions: {
+								language: 'rs',
+								extend: 'rust',
+								definition: {}
+							},
+							showLineNumbers: false, // to enable this, also enable the line in gatsby-browser.js
+						}
+					}
+				]
+			}
+		},
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
